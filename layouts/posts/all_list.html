@@ -1,6 +1,7 @@
 {{ define "main" }}
-  {{ range sort .Paginator.Pages }}
-  <article class="book-post markdown post-item-border">
+  {{ range sort .Site.Pages}}
+  {{ if ne .Kind "section"}}
+  <article class="book-post markdown">
     <h2>
       <a href="{{ .RelPermalink }}">{{ partial "docs/title" . }}</a>
     </h2>
@@ -8,17 +9,18 @@
       <div>
         {{ partial "docs/post-meta" . }}
         {{/*  <div class="book-post-content markdown-inner">
-          {{- .Content | truncate 256 -}}
+          {{- .Summary | truncate 256 -}}
         </div>  */}}
       </div>
-      {{/*  {{- $thumbnail := default "thumbnail.*" .Params.BookPostThumbnail -}}
+      {{- $thumbnail := default "thumbnail.*" .Params.BookPostThumbnail -}}
       {{- with or (.Resources.GetMatch $thumbnail) (resources.GetMatch $thumbnail) -}}
       <div class="book-post-thumbnail">
         <img src="{{ .RelPermalink }}" alt="{{ partial "docs/text/i18n" "Thumbnail" }}" />
       </div>
-      {{- end -}}  */}}
+      {{- end -}}
     </div>
   </article>
+  {{end}}
   {{ end }}
 {{ end }}
 
