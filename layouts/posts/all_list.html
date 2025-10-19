@@ -1,7 +1,7 @@
 {{ define "main" }}
-  {{ range sort .Site.Pages}}
+  {{ range sort .Paginator.Pages}}
   {{ if ne .Kind "section"}}
-  <article class="book-post markdown">
+  <article class="book-post markdown post-item-border">
     <h2>
       <a href="{{ .RelPermalink }}">{{ partial "docs/title" . }}</a>
     </h2>
